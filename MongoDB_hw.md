@@ -4,17 +4,17 @@
 
 Установленная MongoDB без данных
 
-![1.jpg](MongoDB%20302a6/1.jpg)
+![1.jpg](MongoDB_hw/1.jpg)
 
 ## 2. Заполнение данными
 
 Создание новой бд и заполнение из csv файла
 
-![2.jpg](MongoDB%20302a6/2.jpg)
+![2.jpg](MongoDB_hw/2.jpg)
 
 Добавление одного объекта
 
-```json
+```jsx
 db.customers.insertOne(
 	{
 		"CustomerID" : 201,
@@ -30,7 +30,7 @@ db.customers.insertOne(
 
 Добавление нескольких объектов
 
-```json
+```jsx
 db.customers.insertMany([
 	{
 		"CustomerID" : 202,
@@ -63,13 +63,13 @@ db.customers.insertMany([
 
 Добавленные нами вручную объекты:
 
-![4.jpg](MongoDB%20302a6/4.jpg)
+![4.jpg](MongoDB_hw/4.jpg)
 
 ## 3. Выборка и обновление данных
 
 Вывод пяти объектов отсортированных сначала по полю Age по возрастанию, затем по полю Annual Income (k$) по возрастанию
 
-```json
+```jsx
 db.customers.find({}, {_id: 0}).sort({Age: 1, "Annual Income (k$)": 1}).limit(5)
 { CustomerID: 34,
   Genre: 'Male',
@@ -100,7 +100,7 @@ db.customers.find({}, {_id: 0}).sort({Age: 1, "Annual Income (k$)": 1}).limit(5)
 
 Вывод пяти объектов с полем Age равным 22 или полем Annual Income (k$) меньшим 30
 
-```json
+```jsx
 db.customers.find({$or: [{Age: 22}, {"Annual Income (k$)": {$lt: 30}}]}, {_id: 0}).limit(5)
 { CustomerID: 1,
   Genre: 'Male',
@@ -131,7 +131,7 @@ db.customers.find({$or: [{Age: 22}, {"Annual Income (k$)": {$lt: 30}}]}, {_id: 0
 
 Вывод шести объектов с полем  Age равным 23, или 24, или 25
 
-```json
+```jsx
 db.customers.find({Age: {$in: [23, 24, 25]}}, {_id: 0}).limit(6)
 { CustomerID: 4,
   Genre: 'Female',
@@ -167,7 +167,7 @@ db.customers.find({Age: {$in: [23, 24, 25]}}, {_id: 0}).limit(6)
 
 Обновление одного объекта с возраста 23 на возраст 24
 
-```json
+```jsx
 db.customers.updateOne({Age: 23}, {$set: {Age: 24}})
 { acknowledged: true,
   insertedId: null,
@@ -178,7 +178,7 @@ db.customers.updateOne({Age: 23}, {$set: {Age: 24}})
 
 Обновление нескольких объектов с возрастом 27 на возраст 30
 
-```json
+```jsx
 db.customers.updateMany({Age: 27}, {$set: {Age: 30}})
 { acknowledged: true,
   insertedId: null,
@@ -189,7 +189,7 @@ db.customers.updateMany({Age: 27}, {$set: {Age: 30}})
 
 Замена одного объекта но объект с другими полями
 
-```json
+```jsx
 db.customers.replaceOne(
 	{Age: 35, Genre: "Male"},
 	{Age: 33, Genre: "Female", "Annual Income (k$)": 55}
@@ -203,14 +203,14 @@ db.customers.replaceOne(
 
 Удаление объектов с возрастом ≥ 18 и <20
 
-```json
+```jsx
 db.customers.deleteMany({Age: {$gte : 18}, Age: {$lt: 20}})
 { acknowledged: true, deletedCount: 12 }
 ```
 
 Изменение, удаление и добавление объекта в одном запросе
 
-```json
+```jsx
 db.customers.bulkWrite([
 	{
 		updateOne: {
@@ -251,7 +251,7 @@ db.customers.bulkWrite([
 
 Без индексов время выполнения запроса 158ms
 
-```json
+```jsx
 db.questions.find({"Category String" : "TRAVEL & ROLES"}).explain('allPlansExecution')
 { explainVersion: '1',
   queryPlanner: 
@@ -310,14 +310,14 @@ db.questions.find({"Category String" : "TRAVEL & ROLES"}).explain('allPlansExecu
 
 Создаем индексы
 
-```json
+```jsx
 db.questions.createIndex({"Category String" : 1})
 'Category String_1'
 ```
 
 С индексами выполнение такого же запроса 67ms
 
-```json
+```jsx
 db.questions.find({"Category String" : "TRAVEL & ROLES"}).explain('allPlansExecution')
 { explainVersion: '1',
   queryPlanner: 
