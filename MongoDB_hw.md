@@ -4,13 +4,13 @@
 
 Установленная MongoDB без данных
 
-![1.jpg](MongoDB_hw/1.jpg)
+![1.png](MongoDB_hw/1.png)
 
 ## 2. Заполнение данными
 
 Создание новой бд и заполнение из csv файла
 
-![2.jpg](MongoDB_hw/2.jpg)
+![2.png](MongoDB_hw/2.png)
 
 Добавление одного объекта
 
@@ -63,7 +63,7 @@ db.customers.insertMany([
 
 Добавленные нами вручную объекты:
 
-![4.jpg](MongoDB_hw/4.jpg)
+![4.png](MongoDB_hw/4.png)
 
 ## 3. Выборка и обновление данных
 
